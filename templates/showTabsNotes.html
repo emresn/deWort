@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% from "includes/formhelpers.html" import render_field %}
+{% block body %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>{{cat}}s</h3>
+        </div>
+        <div class="col col-sm-1"><a class="btn btn-success" href="/add_{{cat}}">+</a></div>
+    </div>
+    <hr>
+
+
+    {% if tab == [] %}
+    <div class="alert alert-danger" role="alert">
+        Keine Data
+    </div>
+    {% else %}
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Date</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody scope="row">
+            {% for n in data | reverse %}
+            <tr>
+                <td><a href="/show_{{cat}}/{{n}}">{{data[n]['title']}}</a></td>
+                <td>{{data[n]['datum']}}</td>
+                <td><a class="btn btn-primary" href="/show_{{cat}}/{{n}}"> Open </a> <a class="btn btn-warning"
+                        href="/edit_{{cat}}/{{n}}">Edit</a> <a class="btn btn-danger" href="/remove/{{n}}">Remove</a></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

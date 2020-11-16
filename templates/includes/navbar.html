@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/home">deWort</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/show-Name">Names</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/show-Adjektiv">Adjectives</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/show-Verb">Verbs</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/show-Adverb">Adverbs</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/show-Sentence">Sentences</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/show-Table">Tables</a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/show-Note">Notes</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      {% if session["mail"] %}
+
+      <span class="nav-link active">
+        Hi {{ session["mail"] }} 
+      </span>
+      <li class="nav-item active">
+        <a class="nav-link" href="/archive">Archive</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/logout">Logout </a>
+      </li>
+
+      {% else %}
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/register">Register </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/login">Login </a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

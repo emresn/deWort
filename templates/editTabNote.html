@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% from "includes/formhelpers.html" import render_field %}
+{% block body %}
+    
+    
+    <div class="container"> 
+        <h3>{{data['title']}} </h3>
+        <hr> 
+
+        <form method="POST">
+          <div class="form-group">
+              <div class="col col-sm-6"> 
+              {{ render_field(form.title, class="form-control")  }}
+              {{ render_field(form.context, id="editor1", class="form-control") }}
+              </div>
+              <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+      </form>
+    
+    </div>
+   {% endblock %}

@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% from "includes/formhelpers.html" import render_field %}
+{% block body %}
+    
+    
+    <div class="container"> 
+        <h3>{{cat}} </h3>
+        <hr> 
+        <form method="POST">
+            <label for="exampleFormControlInput1">Enter the word.</label>
+        <div class="row"> 
+            <div class="col">
+                <input type="text" class="form-control" name = "text" id="text" placeholder="text"><br></div>
+            <div class="col"><button type="submit" class="btn btn-primary">Add</button>
+            </div>
+
+        </div></form>
+        
+        
+
+    
+
+            {% if data == [] %}
+            <div class="alert alert-danger" role="alert">
+                Keine Data
+              </div>
+            {% else %}
+
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        
+                        <th >DE</th>
+                        <th >EN</th>
+                        <th >TR</th>
+                        <th >Sentence</th>
+                        <th >Comment</th>
+                        <th >Type</th>
+                        <th >Date</th>
+                        <th ></th>
+                        
+                    </tr>
+                    </thead>
+                    {% for n in data | reverse%}
+                    <tbody>
+                    <tr>
+                        
+                        <td>{{data[n]['DE']}}</td>
+                        <td>{{data[n]['EN']}}</td>
+                        <td>{{data[n]['TR']}}</td>
+                        <td>{{data[n]['zb']}}</td>
+                        <td>{{data[n]['komment']}}</td>     
+                        <td>{{data[n]['typ']}}</td>
+
+                        {% if data[n]['modified_datum'] %}
+                        <td>{{data[n]['modified_datum']}}</td>
+                        {% else %}
+                        <td>{{data[n]['datum']}}</td>
+                        {% endif %}
+
+
+                      
+
+                        
+                        <td><a class="btn btn-success" href="/edit/{{n}}">Edit</a>  <a class="btn btn-danger" href="/remove/{{n}}">Remove</a></td>
+                        
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            {% endif %}
+    
+    </div>
+   {% endblock %}

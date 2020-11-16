@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% from "includes/formhelpers.html" import render_field %}
+{% block body %}
+    
+    
+    <div class="container"> 
+        <h3>{{data['title']}} </h3>
+        <h5>{{data['datum']}} </h5>
+        <a class="btn btn-primary" href="../show-{{cat}}">Back</a> <a class="btn btn-warning" href="/edit_{{cat}}/{{id}}">Edit</a>  <a class="btn btn-danger" href="/remove/{{id}}">Remove</a>
+        <hr> 
+
+    
+
+            {% if data == [] %}
+            <div class="alert alert-danger" role="alert">
+                Keine Data
+              </div>
+            {% else %}
+
+              <span></span>
+              <br>
+              <div> {{data['context']|safe}}</div>
+                
+
+
+
+            {% endif %}
+    
+    </div>
+   {% endblock %}

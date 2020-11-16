@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% from "includes/formhelpers.html" import render_field %}
+{% block body %}
+    
+            <form method="POST">
+                <div class="form-group">
+                    <div class="col col-sm-6"> 
+                    {{ render_field(form.de, id="de", class="form-control")  }}
+                    {{ render_field(form.en, id="en", class="form-control") }}
+                    {{ render_field(form.tr, id="tr", class="form-control") }}
+                    {{ render_field(form.zb, id="zb", class="form-control") }}
+                    {{ render_field(form.komment, id="komment", class="form-control") }}
+                </div>
+                    
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+            
+
+           
+    
+    </div>
+    {% endblock %}

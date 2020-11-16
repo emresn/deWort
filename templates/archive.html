@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% from "includes/formhelpers.html" import render_field %}
+{% block body %}
+    
+    
+    <div class="container"> 
+        <h3><a href="/">deWort</a> </h3>
+        <hr> 
+
+    
+
+            {% if data == [] %}
+            <div class="alert alert-danger" role="alert">
+                Keine Data
+              </div>
+            {% else %}
+
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        
+                        <th >DE</th>
+                        <th >EN</th>
+                        <th >TR</th>
+                        <th >z.B.</th>
+                        <th >Komment</th>
+                        <th >Typ</th>
+                        <th >Datum</th>
+                        <th ></th>
+                        
+                    </tr>
+                    </thead>
+                    {% for n in data | reverse%}
+                    <tbody>
+                    <tr>
+                        
+                        <td>{{data[n]['DE']}}</td>
+                        <td>{{data[n]['EN']}}</td>
+                        <td>{{data[n]['TR']}}</td>
+                        <td>{{data[n]['zb']}}</td>
+                        <td>{{data[n]['komment']}}</td>     
+                        <td>{{data[n]['typ']}}</td>
+
+                        {% if data[n]['modified_datum'] %}
+                        <td>{{data[n]['modified_datum']}}</td>
+                        {% else %}
+                        <td>{{data[n]['datum']}}</td>
+                        {% endif %}
+
+
+                      
+
+                        
+                        <td><a class="btn btn-success" href="archive/recover/{{n}}">Recover</a>  <a class="btn btn-danger" href="archive/delete/{{n}}">Delete</a></td>
+                        
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            {% endif %}
+    
+    </div>
+   {% endblock %}

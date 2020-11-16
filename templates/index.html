@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% from "includes/formhelpers.html" import render_field %}
+{% block body %}
+
+
+
+<h3><a href="/">deWort</a> </h3>
+<hr>
+<form method="POST">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Enter the word and select type.</label>
+        <input type="text" class="form-control" name="text" id="text" placeholder="text"><br>
+        <div class="row">
+
+            <div class="col col-sm-1"> {{ render_field(form_idx.name, id="name", class="form-check") }}</div>
+            <div class="col col-sm-1"> {{ render_field(form_idx.adj, id="adj",class="form-check")  }}</div>
+            <div class="col col-sm-1"> {{ render_field(form_idx.verb, id="verb", class="form-check") }}</div>
+            <div class="col col-sm-1"> {{ render_field(form_idx.adv, id="adv",class="form-check") }}</div>
+            <div class="col col-sm-1"> {{ render_field(form_idx.setze, id="setze",class="form-check") }}</div>
+            <div class="col col-sm-1"> {{ render_field(form_idx.tabelle, id="tabelle",class="form-check") }}</div>
+            <div class="col col-sm-1"> {{ render_field(form_idx.note, id="note",class="form-check") }} </div>
+
+
+        </div>
+
+        <br>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+</form>
+<hr>
+
+{% if data == [] %}
+<div class="alert alert-danger" role="alert">
+    Keine Data
+</div>
+{% else %}
+
+
+
+<div class="row">
+    <h5>Letzte Wörter</h5>
+    <hr>
+
+    <form method="POST">
+        <div class="form-group">
+            <div class="row">
+                <div class="col"> {{ render_field(filterform.one, id="one", class="form-check") }}</div>
+                <div class="col"> {{ render_field(filterform.three, id="three", class="form-check")  }}</div>
+                <div class="col"> {{ render_field(filterform.six, id="six", class="form-check") }}</div>
+                <div class="col"><button type="submit" class="btn btn-primary">Filter</button></div>
+            </div>
+        </div>
+</div>
+</form>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+
+            <th>DE</th>
+            <th>EN</th>
+            <th>TR</th>
+            <th>z.B.</th>
+            <th>Komment</th>
+            <th>Typ</th>
+            <th>Datum</th>
+            <th></th>
+
+        </tr>
+    </thead>
+    {% for n in data | reverse -%}
+
+    <tbody>
+        <tr>
+
+           {% if data[n]['typ'] == "Table" %}
+           <td><a class="text-danger" href="/show_Table/{{n}}">{{data[n]['title']}}</a></td>
+           {% elif data[n]['typ'] == "Note" %}
+           <td><a class="text-danger" href="/show_Note/{{n}}">{{data[n]['title']}}</a></td>
+           {% else %}
+
+            
+            <td>{{data[n]['DE']}}</td>
+            {% endif %}
+
+            <td>{{data[n]['EN']}}</td>
+            <td>{{data[n]['TR']}}</td>
+            <td>{{data[n]['zb']}}</td>
+            <td>{{data[n]['komment']}}</td>
+            <td>{{data[n]['typ']}}</td>
+            <td>{{data[n]['datum']}}</td>
+
+            <td><a class="btn btn-success" href="/edit/{{n}}">Edit</a> <a class="btn btn-danger"
+                    href="/remove/{{n}}">Remove</a></td>
+
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+{% endif %}
+
+
+{% endblock %}
